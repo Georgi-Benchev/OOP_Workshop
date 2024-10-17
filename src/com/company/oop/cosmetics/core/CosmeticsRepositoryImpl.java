@@ -38,47 +38,78 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
 
     @Override
     public Product findProductByName(String productName) {
+        for (Product product : products) {
+            if (product.getName().equals(productName)) {
+                return product;
+            }
+        }
+        throw new IllegalArgumentException(String.format("Product %s does not exist!", productName));
         /**
          * Hint: You have to go through every product and see if one has name equal to productName.
          *       If not, "throw new IllegalArgumentException("Product %s does not exist!");"
          */
-        throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     @Override
     public Category findCategoryByName(String categoryName) {
+        for (Category category : categories) {
+            if (category.getName().equals(categoryName)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException(String.format("Category %s does not exist!", categoryName));
         /**
          * Hint: You have to go through every category and see if one has name equal to categoryName.
          *       If not, "throw new IllegalArgumentException("Category %s does not exist!");"
          */
-        throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     @Override
     public void createCategory(String categoryName) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        Category category = new Category(categoryName);
+        categories.add(category);
     }
 
     @Override
     public void createProduct(String name, String brand, double price, GenderType gender) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        Product product = new Product(name, brand, price, gender);
+        products.add(product);
+
     }
 
     @Override
     public boolean categoryExist(String categoryName) {
+        for (Category category : categories) {
+            if (category.getName().equals(categoryName)) {
+                return true;
+
+            }
+        }
+        return false;
         /**
          * Hint: You have to go through every category and see if one has name equal to categoryName.
          *       If there is one, return true. If not, return false.
          */
-        throw new UnsupportedOperationException("Not implemented yet.");
+        /*throw new UnsupportedOperationException("Not implemented yet.");*/
     }
 
     @Override
     public boolean productExist(String productName) {
+
+        for (Product product : products) {
+            if (product.getName().equals(productName)) {
+                return true;
+
+            }
+        }
+        return false;
+
+
+
+
         /**
          * Hint: You have to go through every product and see if one has name equal to productName.
          *       If there is one, return true. If not, return false.
          */
-        throw new UnsupportedOperationException("Not implemented yet.");
     }
 }
