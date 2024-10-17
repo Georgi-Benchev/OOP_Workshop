@@ -3,30 +3,44 @@ package com.company.oop.cosmetics.models;
 import java.util.ArrayList;
 
 public class Category {
-    public static final int NAME_MIN_LENGTH = 2;
-    public static final int NAME_MAX_LENGTH = 15;
+    private final String name;
+    private ArrayList<Product> products=new ArrayList<>();
+
 
     public Category(String name) {
+        if (name.length() >= 2 && name.length() <= 15) {
+            this.name = name;
+        }else {
+            throw new IllegalArgumentException("Name should be between 2 and 15 symbols.");
+        }
     }
 
     public String getName() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return this.name;
     }
 
     public ArrayList<Product> getProducts() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return products;
     }
 
     public void addProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        products.add(product);
     }
 
     public void removeProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        if (products.contains(product)){
+            products.remove(product);
+        }else {
+            throw new IllegalArgumentException("Product not found in category.");
+        }
     }
-    
+
     public String print() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        StringBuilder output= new StringBuilder(String.format("#Category %s//n", this.name));
+        for (Product product:products){
+            output.append(product.print());
+        }
+        return output.toString();
     }
-    
+
 }

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class ShoppingCart {
 
-    private ArrayList<Product> products;
+    private ArrayList<Product> products = new ArrayList<>();
+
 
     public ShoppingCart() {
     }
@@ -14,19 +15,27 @@ public class ShoppingCart {
     }
 
     public void addProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        products.add(product);
     }
 
     public void removeProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        if (products.contains(product)) {
+            products.remove(product);
+        } else {
+            throw new IllegalArgumentException("Shopping cart does not contain product with name " + product + "!.");
+        }
     }
-    
+
     public boolean containsProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return products.contains(product);
     }
-    
+
     public double totalPrice() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        double sum = 0;
+        for (Product product:products){
+            sum+=product.getPrice();
+        }
+        return sum;
     }
-    
+
 }

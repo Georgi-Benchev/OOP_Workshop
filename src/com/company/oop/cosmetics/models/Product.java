@@ -3,46 +3,64 @@ package com.company.oop.cosmetics.models;
 import java.util.Objects;
 
 public class Product {
-
-    public static final int NAME_MIN_LENGTH = 3;
-    public static final int NAME_MAX_LENGTH = 10;
-    public static final int BRAND_MIN_LENGTH = 2;
-    public static final int BRAND_MAX_LENGTH = 10;
-
+    private final String name;
+    private final String brand;
+    private Double price;
+    private final GenderType gender;
     // "Each product in the system has name, brand, price and gender."
 
     public Product(String name, String brand, double price, GenderType gender) {
-        // finish the constructor and validate data
+        if (name.length() >= 3 && name.length() <= 10) {
+            this.name = name;
+        }else {
+            throw new IllegalArgumentException("Name should be between 3 and 10 symbols.");
+        }
+
+        if (brand.length() >= 2 && brand.length() <= 10) {
+            this.brand = brand;
+        }else {
+            throw new IllegalArgumentException("Brand should be between 2 and 10 symbols.");
+        }
+
         setPrice(price);
+        this.gender = gender;
     }
 
     public void setPrice(double price) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        if (price<0){
+            throw new IllegalArgumentException("Price should be non negative.");
+        }else {
+            this.price=price;
+        }
     }
 
     public String getName() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return name;
     }
 
     public double getPrice() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return price;
     }
 
     public String getBrand() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return brand;
     }
 
     public GenderType getGender() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        return gender;
     }
 
     public String print() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        String output = String.format(
+                " #[%s] [%s]//n #Price: [%.2f]//n #Gender: [%s]//n ==="  // not sure about the === ???
+                ,name,brand,price,gender.toString());
+        return output;
+     /*   throw new UnsupportedOperationException("Not implemented yet.");
         // Format:
-        //" #[Name] [Brand]
+        // #[Name] [Brand]
         // #Price: [Price]
         // #Gender: [Gender]
-        // ==="
+        // ==="*/
     }
 
     @Override
@@ -55,5 +73,5 @@ public class Product {
                 Objects.equals(this.getBrand(), product.getBrand()) &&
                 this.getGender() == product.getGender();
     }
-    
+
 }
