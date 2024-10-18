@@ -44,10 +44,6 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
             }
         }
         throw new IllegalArgumentException(String.format("Product %s does not exist!", productName));
-        /**
-         * Hint: You have to go through every product and see if one has name equal to productName.
-         *       If not, "throw new IllegalArgumentException("Product %s does not exist!");"
-         */
     }
 
     @Override
@@ -58,10 +54,6 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
             }
         }
         throw new IllegalArgumentException(String.format("Category %s does not exist!", categoryName));
-        /**
-         * Hint: You have to go through every category and see if one has name equal to categoryName.
-         *       If not, "throw new IllegalArgumentException("Category %s does not exist!");"
-         */
     }
 
     @Override
@@ -74,7 +66,6 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
     public void createProduct(String name, String brand, double price, GenderType gender) {
         Product product = new Product(name, brand, price, gender);
         products.add(product);
-
     }
 
     @Override
@@ -82,34 +73,18 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
         for (Category category : categories) {
             if (category.getName().equals(categoryName)) {
                 return true;
-
             }
         }
         return false;
-        /**
-         * Hint: You have to go through every category and see if one has name equal to categoryName.
-         *       If there is one, return true. If not, return false.
-         */
-        /*throw new UnsupportedOperationException("Not implemented yet.");*/
     }
 
     @Override
     public boolean productExist(String productName) {
-
         for (Product product : products) {
             if (product.getName().equals(productName)) {
                 return true;
-
             }
         }
         return false;
-
-
-
-
-        /**
-         * Hint: You have to go through every product and see if one has name equal to productName.
-         *       If there is one, return true. If not, return false.
-         */
     }
 }

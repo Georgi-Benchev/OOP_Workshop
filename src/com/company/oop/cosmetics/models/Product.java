@@ -1,5 +1,7 @@
 package com.company.oop.cosmetics.models;
 
+import com.company.oop.cosmetics.utils.ValidationHelpers;
+
 import java.util.Objects;
 
 public class Product {
@@ -15,7 +17,6 @@ public class Product {
 
     // Constructor
     public Product(String name, String brand, double price, GenderType gender) {
-
         setName(name);
         setBrand(brand);
         setPrice(price);
@@ -23,8 +24,7 @@ public class Product {
     }
 
 
-
-    public void setName(String name) {
+    private void setName(String name) {
         if (name.length() >= NAME_MIN_LENGTH && name.length() <= NAME_MAX_LENGTH) {
             this.name = name;
         } else {
@@ -32,7 +32,7 @@ public class Product {
         }
     }
 
-    public void setBrand(String brand) {
+    private void setBrand(String brand) {
         if (brand.length() >= PRODUCT_MIN_LENGTH && brand.length() <= PRODUCT_MAX_LENGTH) {
             this.brand = brand;
         } else {
@@ -41,12 +41,12 @@ public class Product {
     }
 
 
-    public void setGender(GenderType gender) {
+    private void setGender(GenderType gender) {
         this.gender = gender;
     }
 
 
-    public void setPrice(double price) {
+    private void setPrice(double price) {
         if (price < 0) {
             throw new IllegalArgumentException("Price should be non negative.");
         } else {
@@ -72,7 +72,7 @@ public class Product {
 
     public String print() {
         String output = String.format(
-                " #[%s] [%s]//n #Price: [%.2f]//n #Gender: [%s]//n ==="  // not sure about the === ???
+                " #%s %s\n #Price: $%.2f\n #Gender: %s\n ==="  // not sure about the === ???
                 , name, brand, price, gender.toString());
         return output;
     }

@@ -6,7 +6,9 @@ public class Startup {
 
     public static void main(String[] args) {
         CosmeticsEngineImpl engine = new CosmeticsEngineImpl();
+
         engine.start();
+
     }
 
 }
